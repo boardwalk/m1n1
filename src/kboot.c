@@ -60,7 +60,7 @@ static int dt_set_chosen(void)
     if (cur_boot_args.video.base) {
         int fb = fdt_path_offset(dt, "/chosen/framebuffer");
         if (fb < 0)
-            bail("FDT: /chosen node not found in devtree\n");
+            bail("FDT: /chosen/framebuffer node not found in devtree\n");
 
         u64 fb_base = cur_boot_args.video.base;
         u64 fb_size = cur_boot_args.video.stride * cur_boot_args.video.height;
@@ -113,7 +113,6 @@ static int dt_set_chosen(void)
     }
 
     int anode = adt_path_offset(adt, "/chosen");
-
     if (anode < 0)
         bail("ADT: /chosen not found\n");
 
@@ -164,7 +163,6 @@ static int dt_set_chosen(void)
 static int dt_set_memory(void)
 {
     int anode = adt_path_offset(adt, "/chosen");
-
     if (anode < 0)
         bail("ADT: /chosen not found\n");
 
